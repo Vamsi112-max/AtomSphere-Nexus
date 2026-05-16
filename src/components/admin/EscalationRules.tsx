@@ -103,31 +103,31 @@ export function EscalationRules() {
 
       <div className="grid gap-4">
         {rules.map((rule) => (
-          <div key={rule.id} className="p-4 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+          <div key={rule.id} className="p-6 rounded-[1.5rem] bg-black/5 border border-black/5 flex items-center justify-between shadow-sm transition-all hover:bg-black/10">
             <div className="space-y-1">
-              <p className="text-sm font-bold uppercase tracking-wider text-primary">
+              <p className="text-[10px] font-black uppercase tracking-widest text-primary">
                 {rule.triggerType.replace('_', ' ')}
               </p>
-              <p className="text-xs text-muted-foreground">
-                Escalate to <span className="text-foreground font-medium">{rule.escalateTo}</span> after <span className="text-foreground font-medium">{rule.thresholdDays} days</span> of inactivity.
+              <p className="text-sm font-bold text-primary/70">
+                Escalate to <span className="text-primary font-black uppercase tracking-tighter">{rule.escalateTo}</span> after <span className="text-primary font-black uppercase tracking-tighter">{rule.thresholdDays} days</span> of inactivity.
               </p>
             </div>
-            <Button variant="ghost" size="icon" onClick={() => handleDeleteRule(rule.id)} className="text-muted-foreground hover:text-destructive">
-              <Trash2 className="h-4 w-4" />
-            </button>
+            <Button variant="ghost" size="icon" onClick={() => handleDeleteRule(rule.id)} className="text-muted-foreground hover:text-destructive rounded-full h-10 w-10">
+              <Trash2 className="h-5 w-5" />
+            </Button>
           </div>
         ))}
 
-        <div className="p-4 rounded-xl border border-dashed border-white/10 bg-white/5 space-y-4">
-          <p className="text-xs font-bold text-muted-foreground uppercase">Create New Rule</p>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="p-8 rounded-[2rem] border border-dashed border-black/10 bg-black/5 space-y-6">
+          <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Deploy Tactical Rule</p>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <Select value={triggerType} onValueChange={setTriggerType}>
-              <SelectTrigger className="bg-black/20 border-white/10 focus:ring-primary/50">
+              <SelectTrigger className="bg-white border-black/5 rounded-full h-12 font-black text-[10px] uppercase tracking-widest text-primary focus:ring-primary/10 transition-all shadow-sm">
                 <SelectValue placeholder="Trigger" />
               </SelectTrigger>
-              <SelectContent className="glass-panel border-white/10">
-                <SelectItem value="PENDING_APPROVAL">Pending Approval</SelectItem>
-                <SelectItem value="MISSING_CHECKIN">Missing Check-in</SelectItem>
+              <SelectContent className="glass-panel border-black/5 rounded-2xl">
+                <SelectItem value="PENDING_APPROVAL" className="font-black text-[10px] uppercase tracking-widest">Pending Approval</SelectItem>
+                <SelectItem value="MISSING_CHECKIN" className="font-black text-[10px] uppercase tracking-widest">Missing Check-in</SelectItem>
               </SelectContent>
             </Select>
             <div className="relative">
@@ -135,23 +135,23 @@ export function EscalationRules() {
                 type="number" 
                 value={thresholdDays} 
                 onChange={(e) => setThresholdDays(Number(e.target.value))}
-                className="bg-black/20 border-white/10 pl-4 focus-visible:ring-primary/50"
+                className="bg-white border-black/5 rounded-full h-12 font-black text-[10px] uppercase tracking-widest text-primary focus:ring-primary/10 transition-all shadow-sm pl-6"
                 placeholder="Days"
               />
-              <span className="absolute right-3 top-2.5 text-[10px] text-muted-foreground uppercase">Days</span>
+              <span className="absolute right-6 top-3.5 text-[8px] font-black text-primary/40 uppercase tracking-widest">Days</span>
             </div>
             <Select value={escalateTo} onValueChange={setEscalateTo}>
-              <SelectTrigger className="bg-black/20 border-white/10 focus:ring-primary/50">
+              <SelectTrigger className="bg-white border-black/5 rounded-full h-12 font-black text-[10px] uppercase tracking-widest text-primary focus:ring-primary/10 transition-all shadow-sm">
                 <SelectValue placeholder="Escalate To" />
               </SelectTrigger>
-              <SelectContent className="glass-panel border-white/10">
-                <SelectItem value="ADMIN">System Admin</SelectItem>
-                <SelectItem value="MANAGER_OF_MANAGER">Direct Manager</SelectItem>
+              <SelectContent className="glass-panel border-black/5 rounded-2xl">
+                <SelectItem value="ADMIN" className="font-black text-[10px] uppercase tracking-widest">System Admin</SelectItem>
+                <SelectItem value="MANAGER_OF_MANAGER" className="font-black text-[10px] uppercase tracking-widest">Direct Manager</SelectItem>
               </SelectContent>
             </Select>
-            <Button onClick={handleAddRule} className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button onClick={handleAddRule} className="pill-button h-12">
               <PlusCircle className="h-4 w-4 mr-2" />
-              Add Rule
+              Deploy Rule
             </Button>
           </div>
         </div>
