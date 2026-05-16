@@ -134,7 +134,7 @@ export function CheckInFormDialog({ isOpen, onClose, goal, onSuccess }: CheckInF
                 {...form.register("actualValue")}
               />
               {form.formState.errors.actualValue && (
-                <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{form.formState.errors.actualValue.message}</p>
+                <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.actualValue.message)}</p>
               )}
             </div>
 
@@ -151,7 +151,7 @@ export function CheckInFormDialog({ isOpen, onClose, goal, onSuccess }: CheckInF
                 </SelectContent>
               </Select>
               {form.formState.errors.status && (
-                <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{form.formState.errors.status.message}</p>
+                <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.status.message)}</p>
               )}
             </div>
           </div>
@@ -164,7 +164,7 @@ export function CheckInFormDialog({ isOpen, onClose, goal, onSuccess }: CheckInF
               {...form.register("employeeComment")}
             />
             {form.formState.errors.employeeComment && (
-              <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{form.formState.errors.employeeComment.message}</p>
+              <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.employeeComment.message)}</p>
             )}
           </div>
 
