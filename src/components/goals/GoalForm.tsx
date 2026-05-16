@@ -43,7 +43,7 @@ export function GoalForm() {
   });
 
   const watchGoals = form.watch("goals");
-  const currentTotalWeightage = watchGoals.reduce((sum, goal) => sum + (Number(goal.weightage) || 0), 0);
+  const currentTotalWeightage = watchGoals.reduce((sum: number, goal: any) => sum + (Number(goal.weightage) || 0), 0);
   const isOverWeightage = currentTotalWeightage > 100;
   const isExactWeightage = currentTotalWeightage === 100;
 
