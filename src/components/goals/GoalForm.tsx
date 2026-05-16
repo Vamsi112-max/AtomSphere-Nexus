@@ -51,7 +51,7 @@ export function GoalForm() {
     if (!user) return;
     setIsSubmitting(true);
     try {
-      const goalsToInsert = values.goals.map((goal) => ({
+      const goalsToInsert = values.goals.map((goal: any) => ({
         employee_id: user.id,
         title: goal.title,
         description: goal.description,
