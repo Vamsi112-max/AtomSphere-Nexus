@@ -23,6 +23,8 @@ import { CheckInFormDialog } from "@/components/check-ins/CheckInFormDialog";
 
 export function MyGoalsDashboard() {
   const { user } = useAuth();
+  const currentQuarter = `Q${Math.floor((new Date().getMonth() + 3) / 3)}`;
+  
   const [goals, setGoals] = useState<any[]>([
     { id: 'd1', title: 'Enterprise AI Strategy', description: 'Deploy unified AI orchestration across all business units.', uom: '%', targetValue: 100, weightage: 30, status: 'approved', quarter: currentQuarter, thrustArea: 'Innovation' },
     { id: 'd2', title: 'Global Revenue Peak', description: 'Achieve record-breaking Q3 revenue targets through strategic expansion.', uom: '$M', targetValue: 25, weightage: 40, status: 'approved', quarter: currentQuarter, thrustArea: 'Financial' },
@@ -34,7 +36,6 @@ export function MyGoalsDashboard() {
   const [selectedGoalForCheckIn, setSelectedGoalForCheckIn] = useState<any | null>(null);
   const [isCheckInOpen, setIsCheckInOpen] = useState(false);
 
-  const currentQuarter = `Q${Math.floor((new Date().getMonth() + 3) / 3)}`;
 
   useEffect(() => {
     if (!user) return;
