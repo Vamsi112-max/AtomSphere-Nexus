@@ -185,75 +185,75 @@ export function ReportingDashboard() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="glass-panel p-6 rounded-xl border border-white/5 space-y-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
-          <div className="flex flex-1 gap-4 w-full md:max-w-xl">
+    <div className="space-y-8">
+      <div className="glass-panel p-8 rounded-[2rem] border border-black/5 space-y-8 shadow-sm">
+        <div className="flex flex-col md:flex-row gap-6 justify-between items-start md:items-center">
+          <div className="flex flex-1 gap-6 w-full md:max-w-2xl">
             <div className="relative flex-1">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-4 top-3.5 h-5 w-5 text-primary/40" />
               <Input 
-                placeholder="Search goals or owners..." 
+                placeholder="Search strategic goals or owners..." 
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-9 bg-black/20 border-white/10"
+                className="pill-input h-12 pl-12"
               />
             </div>
             {role !== 'employee' && (
-              <Select value={deptFilter} onValueChange={setDeptFilter}>
-                <SelectTrigger className="w-[180px] bg-black/20 border-white/10">
+              <Select value={deptFilter} onValueChange={(val) => val && setDeptFilter(val)}>
+                <SelectTrigger className="w-[200px] bg-white border-black/5 rounded-full h-12 font-black text-[10px] uppercase tracking-widest text-primary focus:ring-primary/10 transition-all shadow-sm">
                   <SelectValue placeholder="Department" />
                 </SelectTrigger>
-                <SelectContent className="glass-panel border-white/10">
-                  <SelectItem value="all">All Departments</SelectItem>
+                <SelectContent className="glass-panel border-black/5 rounded-2xl">
+                  <SelectItem value="all" className="font-black text-[10px] uppercase tracking-widest">All Departments</SelectItem>
                   {uniqueDepartments.map(d => (
-                    <SelectItem key={d} value={d}>{d}</SelectItem>
+                    <SelectItem key={d} value={d} className="font-black text-[10px] uppercase tracking-widest">{d}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             )}
-            <Select value={quarterFilter} onValueChange={setQuarterFilter}>
-              <SelectTrigger className="w-[140px] bg-black/20 border-white/10">
+            <Select value={quarterFilter} onValueChange={(val) => val && setQuarterFilter(val)}>
+              <SelectTrigger className="w-[160px] bg-white border-black/5 rounded-full h-12 font-black text-[10px] uppercase tracking-widest text-primary focus:ring-primary/10 transition-all shadow-sm">
                 <SelectValue placeholder="Quarter" />
               </SelectTrigger>
-              <SelectContent className="glass-panel border-white/10">
-                <SelectItem value="all">All Quarters</SelectItem>
-                <SelectItem value="Q1">Q1</SelectItem>
-                <SelectItem value="Q2">Q2</SelectItem>
-                <SelectItem value="Q3">Q3</SelectItem>
-                <SelectItem value="Q4">Q4</SelectItem>
+              <SelectContent className="glass-panel border-black/5 rounded-2xl">
+                <SelectItem value="all" className="font-black text-[10px] uppercase tracking-widest">All Quarters</SelectItem>
+                <SelectItem value="Q1" className="font-black text-[10px] uppercase tracking-widest">Q1</SelectItem>
+                <SelectItem value="Q2" className="font-black text-[10px] uppercase tracking-widest">Q2</SelectItem>
+                <SelectItem value="Q3" className="font-black text-[10px] uppercase tracking-widest">Q3</SelectItem>
+                <SelectItem value="Q4" className="font-black text-[10px] uppercase tracking-widest">Q4</SelectItem>
               </SelectContent>
             </Select>
           </div>
           
-          <div className="flex gap-2 w-full md:w-auto">
-            <Button variant="outline" size="sm" onClick={handleExportCSV} className="border-white/10 hover:bg-white/5">
-              <FileText className="mr-2 h-4 w-4 text-blue-400" />
+          <div className="flex gap-3 w-full md:w-auto">
+            <Button variant="ghost" size="sm" onClick={handleExportCSV} className="rounded-full h-12 px-6 font-black text-[10px] uppercase tracking-widest text-primary hover:bg-black/5">
+              <FileText className="mr-2 h-5 w-5 text-blue-600" />
               CSV
             </Button>
-            <Button variant="outline" size="sm" onClick={handleExportExcel} className="border-white/10 hover:bg-white/5">
-              <FileSpreadsheet className="mr-2 h-4 w-4 text-green-400" />
+            <Button variant="ghost" size="sm" onClick={handleExportExcel} className="rounded-full h-12 px-6 font-black text-[10px] uppercase tracking-widest text-primary hover:bg-black/5">
+              <FileSpreadsheet className="mr-2 h-5 w-5 text-green-600" />
               Excel
             </Button>
-            <Button variant="outline" size="sm" onClick={handleExportPDF} className="border-white/10 hover:bg-white/5">
-              <FileIcon className="mr-2 h-4 w-4 text-red-400" />
+            <Button variant="ghost" size="sm" onClick={handleExportPDF} className="rounded-full h-12 px-6 font-black text-[10px] uppercase tracking-widest text-primary hover:bg-black/5">
+              <FileIcon className="mr-2 h-5 w-5 text-red-600" />
               PDF
             </Button>
           </div>
         </div>
 
-        <div className="rounded-md border border-white/10 overflow-hidden">
+        <div className="rounded-[2rem] border border-black/5 overflow-hidden shadow-sm bg-white/20">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left">
-              <thead className="text-xs uppercase bg-black/40 text-muted-foreground">
+            <table className="w-full text-left">
+              <thead className="bg-black/5 border-b border-black/5">
                 <tr>
-                  <th className="px-4 py-3 font-semibold">Goal</th>
-                  {role !== 'employee' && <th className="px-4 py-3 font-semibold">Owner</th>}
-                  {role !== 'employee' && <th className="px-4 py-3 font-semibold">Dept</th>}
-                  <th className="px-4 py-3 font-semibold">Quarter</th>
-                  <th className="px-4 py-3 font-semibold">Target</th>
-                  <th className="px-4 py-3 font-semibold">Actual</th>
-                  <th className="px-4 py-3 font-semibold">Progress</th>
-                  <th className="px-4 py-3 font-semibold">Status</th>
+                  <th className="px-6 py-4 text-[10px] font-black text-primary uppercase tracking-widest">Goal Title</th>
+                  {role !== 'employee' && <th className="px-6 py-4 text-[10px] font-black text-primary uppercase tracking-widest">Owner</th>}
+                  {role !== 'employee' && <th className="px-6 py-4 text-[10px] font-black text-primary uppercase tracking-widest">Dept</th>}
+                  <th className="px-6 py-4 text-[10px] font-black text-primary uppercase tracking-widest">Quarter</th>
+                  <th className="px-6 py-4 text-[10px] font-black text-primary uppercase tracking-widest">Target</th>
+                  <th className="px-6 py-4 text-[10px] font-black text-primary uppercase tracking-widest">Actual</th>
+                  <th className="px-6 py-4 text-[10px] font-black text-primary uppercase tracking-widest">Progress</th>
+                  <th className="px-6 py-4 text-[10px] font-black text-primary uppercase tracking-widest">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -265,26 +265,30 @@ export function ReportingDashboard() {
                   </tr>
                 ) : (
                   filteredData.map((row, idx) => (
-                    <tr key={`${row.goalId}-${idx}`} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                      <td className="px-4 py-3 font-medium text-foreground max-w-[200px] truncate" title={row.title}>{row.title}</td>
-                      {role !== 'employee' && <td className="px-4 py-3 whitespace-nowrap">{row.ownerName}</td>}
-                      {role !== 'employee' && <td className="px-4 py-3 whitespace-nowrap"><span className="px-2 py-1 bg-white/5 rounded text-xs">{row.department}</span></td>}
-                      <td className="px-4 py-3 whitespace-nowrap">{row.quarter} {row.year}</td>
-                      <td className="px-4 py-3 whitespace-nowrap font-medium">{row.target}</td>
-                      <td className="px-4 py-3 whitespace-nowrap text-primary">{row.actual}</td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-2">
-                          <div className="w-full h-1.5 bg-white/10 rounded-full max-w-[50px]">
-                            <div className="h-full bg-primary rounded-full" style={{ width: `${Math.min(100, row.progress)}%` }} />
-                          </div>
-                          <span className="text-xs">{row.progress}%</span>
+                    <tr key={`${row.goalId}-${idx}`} className="border-b border-black/5 hover:bg-black/5 transition-colors">
+                      <td className="px-6 py-4">
+                        <div className="flex flex-col">
+                          <span className="font-black text-primary text-sm truncate max-w-[200px]" title={row.title}>{row.title}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        <span className={`px-2 py-1 rounded text-xs font-medium ${
-                          row.status === 'Completed' ? 'bg-green-500/20 text-green-400' :
-                          row.status === 'On Track' ? 'bg-blue-500/20 text-blue-400' :
-                          'bg-orange-500/20 text-orange-400'
+                      {role !== 'employee' && <td className="px-6 py-4 font-bold text-primary text-sm whitespace-nowrap">{row.ownerName}</td>}
+                      {role !== 'employee' && <td className="px-6 py-4 whitespace-nowrap"><span className="px-3 py-1 bg-primary/5 text-primary text-[10px] font-black rounded-lg uppercase tracking-widest">{row.department}</span></td>}
+                      <td className="px-6 py-4 font-bold text-primary/70 text-sm whitespace-nowrap uppercase tracking-tighter">{row.quarter} {row.year}</td>
+                      <td className="px-6 py-4 font-black text-primary text-sm whitespace-nowrap">{row.target}</td>
+                      <td className="px-6 py-4 font-black text-primary text-sm whitespace-nowrap">{row.actual}</td>
+                      <td className="px-6 py-4 min-w-[150px]">
+                        <div className="flex items-center gap-3">
+                          <div className="w-full h-2 bg-black/5 rounded-full overflow-hidden">
+                            <div className="h-full bg-primary rounded-full shadow-[0_0_10px_rgba(var(--primary),0.3)]" style={{ width: `${Math.min(100, row.progress)}%` }} />
+                          </div>
+                          <span className="text-[10px] font-black text-primary">{row.progress}%</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${
+                          row.status === 'Completed' ? 'bg-green-500/10 text-green-600 border-green-500/10' :
+                          row.status === 'On Track' ? 'bg-primary/10 text-primary border-primary/10' :
+                          'bg-orange-500/10 text-orange-600 border-orange-500/10'
                         }`}>
                           {row.status}
                         </span>
