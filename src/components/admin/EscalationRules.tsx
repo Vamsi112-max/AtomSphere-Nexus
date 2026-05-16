@@ -121,7 +121,7 @@ export function EscalationRules() {
         <div className="p-8 rounded-[2rem] border border-dashed border-black/10 bg-black/5 space-y-6">
           <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Deploy Tactical Rule</p>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <Select value={triggerType} onValueChange={setTriggerType}>
+            <Select value={triggerType} onValueChange={(val) => val && setTriggerType(val)}>
               <SelectTrigger className="bg-white border-black/5 rounded-full h-12 font-black text-[10px] uppercase tracking-widest text-primary focus:ring-primary/10 transition-all shadow-sm">
                 <SelectValue placeholder="Trigger" />
               </SelectTrigger>
@@ -140,7 +140,7 @@ export function EscalationRules() {
               />
               <span className="absolute right-6 top-3.5 text-[8px] font-black text-primary/40 uppercase tracking-widest">Days</span>
             </div>
-            <Select value={escalateTo} onValueChange={setEscalateTo}>
+            <Select value={escalateTo} onValueChange={(val) => val && setEscalateTo(val)}>
               <SelectTrigger className="bg-white border-black/5 rounded-full h-12 font-black text-[10px] uppercase tracking-widest text-primary focus:ring-primary/10 transition-all shadow-sm">
                 <SelectValue placeholder="Escalate To" />
               </SelectTrigger>
