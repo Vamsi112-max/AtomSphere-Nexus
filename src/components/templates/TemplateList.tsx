@@ -151,11 +151,11 @@ export function TemplateList() {
           />
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <Button className="pill-button h-12">
+          <DialogTrigger>
+            <div className="pill-button h-12 flex items-center px-6 cursor-pointer">
               <Plus className="h-4 w-4 mr-2" />
               New Template
-            </Button>
+            </div>
           </DialogTrigger>
           <DialogContent className="glass-panel border-white/80 max-w-lg p-10">
             <DialogHeader>
