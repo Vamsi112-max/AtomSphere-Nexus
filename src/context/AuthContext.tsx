@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       
       if (session?.user) {
         setUser(session.user);
-        await fetchRole(session.user.id);
+        await fetchRole(session.user);
       } else {
         setUser(null);
         setRole(null);
@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       async (event, session) => {
         if (session?.user) {
           setUser(session.user);
-          await fetchRole(session.user.id);
+          await fetchRole(session.user);
         } else {
           setUser(null);
           setRole(null);
@@ -63,12 +63,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
-  const fetchRole = async (userId: string) => {
+  const fetchRole = async (user: User) => {
+    // Priority 1: Tactical Metadata (Direct from Seeding/Auth)
+    if (user.user_metadata?.role) {
+      setRole(user.user_metadata.role as Role);
+      return;
+    }
+
+    // Priority 2: Database Fallback
     try {
       const { data, error } = await supabase
         .from('users')
         .select('role')
-        .eq('id', userId)
+        .eq('id', user.id)
         .single();
         
       if (data && data.role) {
