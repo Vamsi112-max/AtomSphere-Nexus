@@ -215,7 +215,7 @@ export function GoalForm() {
                     min={10}
                     max={100}
                     placeholder="10"
-                    className={`pill-input ${form.formState.errors.goals?.[index]?.weightage ? 'border-destructive' : ''}`}
+                    className={`pill-input ${(form.formState.errors as any).goals?.[index]?.weightage ? 'border-destructive' : ''}`}
                     {...form.register(`goals.${index}.weightage`)}
                   />
                   {(form.formState.errors as any).goals?.[index]?.weightage && (
