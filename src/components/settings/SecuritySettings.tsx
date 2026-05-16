@@ -60,57 +60,57 @@ export function SecuritySettings() {
 
   return (
     <div className="space-y-8 max-w-2xl">
-      <div className="space-y-2">
-        <h3 className="text-xl font-bold text-white flex items-center gap-2">
-          <ShieldCheck className="h-5 w-5 text-primary" />
-          Security Credentials
+      <div className="space-y-3">
+        <h3 className="text-3xl font-black text-primary flex items-center gap-3 uppercase tracking-widest leading-tight">
+          <ShieldCheck className="h-7 w-7 text-primary" />
+          Tactical Shield
         </h3>
-        <p className="text-sm text-muted-foreground">
-          Maintain the integrity of your account by updating your authentication credentials regularly.
+        <p className="text-xs font-bold text-muted-foreground leading-relaxed">
+          Maintain the tactical integrity of your account by updating your authentication credentials regularly.
         </p>
       </div>
 
       <form onSubmit={handleChangePassword} className="space-y-6">
-        <div className="space-y-2">
-          <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Current Password</label>
+        <div className="space-y-3">
+          <label className="ml-4 text-[10px] font-black text-primary uppercase tracking-[0.2em]">Current Password</label>
           <div className="relative">
-            <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+            <Lock className="absolute left-5 top-5 h-5 w-5 text-primary/40" />
             <Input 
               type="password"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
-              className="bg-black/20 border-white/10 pl-10 focus-visible:ring-primary/50"
+              className="pill-input h-14 pl-14 text-lg"
               placeholder="••••••••"
               required
             />
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">New Password</label>
+        <div className="grid sm:grid-cols-2 gap-8">
+          <div className="space-y-3">
+            <label className="ml-4 text-[10px] font-black text-primary uppercase tracking-[0.2em]">New Password</label>
             <div className="relative">
-              <KeyRound className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+              <KeyRound className="absolute left-5 top-5 h-5 w-5 text-primary/40" />
               <Input 
                 type="password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="bg-black/20 border-white/10 pl-10 focus-visible:ring-primary/50"
+                className="pill-input h-14 pl-14 text-lg"
                 placeholder="••••••••"
                 required
               />
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Confirm New Password</label>
+          <div className="space-y-3">
+            <label className="ml-4 text-[10px] font-black text-primary uppercase tracking-[0.2em]">Confirm New Password</label>
             <div className="relative">
-              <KeyRound className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+              <KeyRound className="absolute left-5 top-5 h-5 w-5 text-primary/40" />
               <Input 
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="bg-black/20 border-white/10 pl-10 focus-visible:ring-primary/50"
+                className="pill-input h-14 pl-14 text-lg"
                 placeholder="••••••••"
                 required
               />
@@ -120,26 +120,26 @@ export function SecuritySettings() {
 
         <Button 
           type="submit" 
-          className="w-full sm:w-auto bg-primary text-primary-foreground shadow-[0_0_15px_rgba(var(--primary),0.3)] hover:bg-primary/90"
+          className="pill-button h-14 px-12"
           disabled={loading}
         >
-          {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Lock className="mr-2 h-4 w-4" />}
-          Update Password
+          {loading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Lock className="mr-2 h-5 w-5" />}
+          Update Protocol Credentials
         </Button>
       </form>
 
-      <div className="pt-8 border-t border-white/10 space-y-4">
-        <h4 className="text-sm font-bold text-white uppercase tracking-wider">Active Sessions</h4>
-        <div className="p-4 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+      <div className="pt-8 border-t border-black/5 space-y-6">
+        <h4 className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Active Sessions</h4>
+        <div className="p-6 rounded-[1.5rem] bg-black/5 border border-black/5 flex items-center justify-between shadow-sm">
+          <div className="flex items-center gap-4">
+            <div className="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
             <div>
-              <p className="text-sm font-medium">Current Device</p>
-              <p className="text-[10px] text-muted-foreground uppercase">Last Active: Just Now</p>
+              <p className="text-sm font-black text-primary">Current Device</p>
+              <p className="text-[10px] text-muted-foreground font-black uppercase tracking-widest mt-1">Last Active: Just Now</p>
             </div>
           </div>
-          <Button variant="ghost" size="sm" className="text-xs text-muted-foreground hover:text-white">
-            Manage Sessions
+          <Button variant="ghost" size="sm" className="rounded-full font-black text-[10px] uppercase tracking-widest text-primary hover:bg-black/5">
+            Manage Tactical Access
           </Button>
         </div>
       </div>

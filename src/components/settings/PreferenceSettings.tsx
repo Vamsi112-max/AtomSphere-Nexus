@@ -22,69 +22,70 @@ export function PreferenceSettings() {
 
   return (
     <div className="space-y-12 max-w-2xl">
-      <section className="space-y-6">
-        <div className="space-y-1">
-          <h3 className="text-xl font-bold text-white flex items-center gap-2">
-            <Globe className="h-5 w-5 text-primary" />
-            Appearance & Theme
+      <section className="space-y-8">
+        <div className="space-y-3">
+          <h3 className="text-3xl font-black text-primary flex items-center gap-3 uppercase tracking-widest leading-tight">
+            <Globe className="h-7 w-7 text-primary" />
+            Visual Interface
           </h3>
-          <p className="text-sm text-muted-foreground">
-            Customize the visual experience of your Nexus interface.
+          <p className="text-xs font-bold text-muted-foreground leading-relaxed">
+            Customize the tactical visual experience of your Nexus intelligence interface.
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-6">
           {[
-            { id: 'light', icon: Sun, label: 'Light' },
-            { id: 'dark', icon: Moon, label: 'Dark' },
-            { id: 'system', icon: Monitor, label: 'System' },
+            { id: 'light', icon: Sun, label: 'Standard' },
+            { id: 'dark', icon: Moon, label: 'Stealth' },
+            { id: 'system', icon: Monitor, label: 'Adaptive' },
           ].map((item) => (
             <button
               key={item.id}
               onClick={() => setTheme(item.id)}
-              className={`p-4 rounded-xl border flex flex-col items-center gap-3 transition-all ${
+              className={`p-6 rounded-[1.5rem] border flex flex-col items-center gap-4 transition-all shadow-sm ${
                 theme === item.id 
-                  ? 'border-primary bg-primary/10 ring-1 ring-primary' 
-                  : 'border-white/10 bg-black/40 hover:bg-white/5 text-muted-foreground'
+                  ? 'border-primary bg-primary text-white shadow-lg shadow-primary/20' 
+                  : 'border-black/5 bg-black/5 hover:bg-black/10 text-muted-foreground font-bold'
               }`}
             >
-              <item.icon className={`h-6 w-6 ${theme === item.id ? 'text-primary' : ''}`} />
-              <span className="text-xs font-bold uppercase tracking-wider">{item.label}</span>
+              <item.icon className={`h-8 w-8 ${theme === item.id ? 'text-white' : 'text-primary/40'}`} />
+              <span className="text-[10px] font-black uppercase tracking-widest">{item.label}</span>
             </button>
           ))}
         </div>
       </section>
 
-      <section className="space-y-6">
-        <div className="space-y-1">
-          <h3 className="text-xl font-bold text-white flex items-center gap-2">
-            <Bell className="h-5 w-5 text-primary" />
-            Notification Matrix
+      <section className="space-y-8">
+        <div className="space-y-3">
+          <h3 className="text-3xl font-black text-primary flex items-center gap-3 uppercase tracking-widest leading-tight">
+            <Bell className="h-7 w-7 text-primary" />
+            Intelligence Matrix
           </h3>
-          <p className="text-sm text-muted-foreground">
-            Configure how and when you receive updates from the system.
+          <p className="text-xs font-bold text-muted-foreground leading-relaxed">
+            Configure how and when you receive strategic updates from the system.
           </p>
         </div>
 
         <div className="space-y-4">
           {[
-            { id: 'email', icon: Mail, label: 'Email Notifications', desc: 'Summary of goal progress and mentions.' },
-            { id: 'push', icon: Smartphone, label: 'Push Notifications', desc: 'Real-time alerts on your mobile device.' },
-            { id: 'inApp', icon: Bell, label: 'In-App Alerts', desc: 'Red badges and toast notifications.' },
+            { id: 'email', icon: Mail, label: 'Tactical Email', desc: 'Summary of mission progress and operative mentions.' },
+            { id: 'push', icon: Smartphone, label: 'Matrix Push', desc: 'Real-time alerts on your mobile device.' },
+            { id: 'inApp', icon: Bell, label: 'Neural Alerts', desc: 'High-visibility badges and tactical toasts.' },
           ].map((item) => (
-            <div key={item.id} className="p-4 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="p-2 bg-white/5 rounded-lg">
-                  <item.icon className="h-5 w-5 text-muted-foreground" />
+            <div key={item.id} className="p-6 rounded-[1.5rem] bg-black/5 border border-black/5 flex items-center justify-between shadow-sm">
+              <div className="flex items-center gap-6">
+                <div className="p-3 bg-white rounded-full shadow-sm border border-black/5">
+                  <item.icon className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-white">{item.label}</p>
-                  <p className="text-xs text-muted-foreground">{item.desc}</p>
+                  <p className="text-sm font-black text-primary">{item.label}</p>
+                  <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mt-1">{item.desc}</p>
                 </div>
               </div>
               <Switch 
                 checked={notifications[item.id as keyof typeof notifications]} 
                 onCheckedChange={() => handleToggle(item.id as keyof typeof notifications)}
+                className="data-[state=checked]:bg-primary"
               />
             </div>
           ))}
