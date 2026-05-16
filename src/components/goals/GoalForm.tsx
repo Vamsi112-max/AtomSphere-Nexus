@@ -154,8 +154,8 @@ export function GoalForm() {
                     className="bg-black/5 border-black/5 text-lg font-black text-primary placeholder:text-muted-foreground/30 rounded-xl h-12"
                     {...form.register(`goals.${index}.title`)}
                   />
-                  {form.formState.errors.goals?.[index]?.title && (
-                    <p className="text-xs text-destructive">{String(form.formState.errors.goals[index]?.title?.message)}</p>
+                  {(form.formState.errors as any).goals?.[index]?.title && (
+                    <p className="text-xs text-destructive">{String((form.formState.errors as any).goals[index]?.title?.message)}</p>
                   )}
                 </div>
 
@@ -165,8 +165,8 @@ export function GoalForm() {
                     className="bg-black/5 border-black/5 resize-none h-24 rounded-xl font-medium"
                     {...form.register(`goals.${index}.description`)}
                   />
-                  {form.formState.errors.goals?.[index]?.description && (
-                    <p className="text-xs text-destructive">{String(form.formState.errors.goals[index]?.description?.message)}</p>
+                  {(form.formState.errors as any).goals?.[index]?.description && (
+                    <p className="text-xs text-destructive">{String((form.formState.errors as any).goals[index]?.description?.message)}</p>
                   )}
                 </div>
 
@@ -177,8 +177,8 @@ export function GoalForm() {
                     className="pill-input"
                     {...form.register(`goals.${index}.uom`)}
                   />
-                  {form.formState.errors.goals?.[index]?.uom && (
-                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.goals[index]?.uom?.message)}</p>
+                  {(form.formState.errors as any).goals?.[index]?.uom && (
+                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String((form.formState.errors as any).goals[index]?.uom?.message)}</p>
                   )}
                 </div>
 
@@ -191,8 +191,8 @@ export function GoalForm() {
                     className="pill-input"
                     {...form.register(`goals.${index}.targetValue`)}
                   />
-                  {form.formState.errors.goals?.[index]?.targetValue && (
-                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.goals[index]?.targetValue?.message)}</p>
+                  {(form.formState.errors as any).goals?.[index]?.targetValue && (
+                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String((form.formState.errors as any).goals[index]?.targetValue?.message)}</p>
                   )}
                 </div>
 
@@ -203,8 +203,8 @@ export function GoalForm() {
                     className="pill-input"
                     {...form.register(`goals.${index}.thrustArea`)}
                   />
-                  {form.formState.errors.goals?.[index]?.thrustArea && (
-                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.goals[index]?.thrustArea?.message)}</p>
+                  {(form.formState.errors as any).goals?.[index]?.thrustArea && (
+                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String((form.formState.errors as any).goals[index]?.thrustArea?.message)}</p>
                   )}
                 </div>
 
@@ -218,8 +218,8 @@ export function GoalForm() {
                     className={`pill-input ${form.formState.errors.goals?.[index]?.weightage ? 'border-destructive' : ''}`}
                     {...form.register(`goals.${index}.weightage`)}
                   />
-                  {form.formState.errors.goals?.[index]?.weightage && (
-                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.goals[index]?.weightage?.message)}</p>
+                  {(form.formState.errors as any).goals?.[index]?.weightage && (
+                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String((form.formState.errors as any).goals[index]?.weightage?.message)}</p>
                   )}
                 </div>
               </div>
