@@ -113,7 +113,7 @@ export function GoalForm() {
         </div>
         {form.formState.errors.goals?.root && (
           <p className="text-destructive text-sm mt-2 font-medium">
-            {form.formState.errors.goals.root.message}
+            {String((form.formState.errors.goals.root as any).message)}
           </p>
         )}
       </div>
@@ -155,7 +155,7 @@ export function GoalForm() {
                     {...form.register(`goals.${index}.title`)}
                   />
                   {form.formState.errors.goals?.[index]?.title && (
-                    <p className="text-xs text-destructive">{form.formState.errors.goals[index]?.title?.message}</p>
+                    <p className="text-xs text-destructive">{String(form.formState.errors.goals[index]?.title?.message)}</p>
                   )}
                 </div>
 
@@ -166,7 +166,7 @@ export function GoalForm() {
                     {...form.register(`goals.${index}.description`)}
                   />
                   {form.formState.errors.goals?.[index]?.description && (
-                    <p className="text-xs text-destructive">{form.formState.errors.goals[index]?.description?.message}</p>
+                    <p className="text-xs text-destructive">{String(form.formState.errors.goals[index]?.description?.message)}</p>
                   )}
                 </div>
 
@@ -178,7 +178,7 @@ export function GoalForm() {
                     {...form.register(`goals.${index}.uom`)}
                   />
                   {form.formState.errors.goals?.[index]?.uom && (
-                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{form.formState.errors.goals[index]?.uom?.message}</p>
+                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.goals[index]?.uom?.message)}</p>
                   )}
                 </div>
 
@@ -192,7 +192,7 @@ export function GoalForm() {
                     {...form.register(`goals.${index}.targetValue`)}
                   />
                   {form.formState.errors.goals?.[index]?.targetValue && (
-                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{form.formState.errors.goals[index]?.targetValue?.message}</p>
+                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.goals[index]?.targetValue?.message)}</p>
                   )}
                 </div>
 
@@ -204,7 +204,7 @@ export function GoalForm() {
                     {...form.register(`goals.${index}.thrustArea`)}
                   />
                   {form.formState.errors.goals?.[index]?.thrustArea && (
-                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{form.formState.errors.goals[index]?.thrustArea?.message}</p>
+                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.goals[index]?.thrustArea?.message)}</p>
                   )}
                 </div>
 
@@ -219,7 +219,7 @@ export function GoalForm() {
                     {...form.register(`goals.${index}.weightage`)}
                   />
                   {form.formState.errors.goals?.[index]?.weightage && (
-                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{form.formState.errors.goals[index]?.weightage?.message}</p>
+                    <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.goals[index]?.weightage?.message)}</p>
                   )}
                 </div>
               </div>
