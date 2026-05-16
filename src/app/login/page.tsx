@@ -123,6 +123,24 @@ export default function LoginPage() {
           </svg>
           Google Cloud Sync
         </Button>
+
+        <div className="mt-12 w-full glass-panel p-8 rounded-[2rem] border border-black/5 bg-white/20">
+          <p className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-6">Tactical Access Matrix</p>
+          <div className="grid grid-cols-1 gap-4 text-left">
+            <div className="p-4 bg-white/40 rounded-2xl border border-white/60">
+              <p className="text-[8px] font-black text-primary/60 uppercase tracking-widest mb-1">Administrator</p>
+              <p className="text-xs font-bold text-primary">admin@atomsphere.com / admin123</p>
+            </div>
+            <div className="p-4 bg-white/40 rounded-2xl border border-white/60">
+              <p className="text-[8px] font-black text-primary/60 uppercase tracking-widest mb-1">Manager</p>
+              <p className="text-xs font-bold text-primary">manager@atomsphere.com / manager123</p>
+            </div>
+            <div className="p-4 bg-white/40 rounded-2xl border border-white/60">
+              <p className="text-[8px] font-black text-primary/60 uppercase tracking-widest mb-1">Employee</p>
+              <p className="text-xs font-bold text-primary">employee@atomsphere.com / employee123</p>
+            </div>
+          </div>
+        </div>
       </motion.div>
     </div>
   );

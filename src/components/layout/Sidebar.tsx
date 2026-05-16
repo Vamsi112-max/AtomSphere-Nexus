@@ -51,6 +51,23 @@ export function Sidebar({ className }: { className?: string }) {
             );
           })}
         </nav>
+
+        <div className="mt-8 px-4">
+          <div className="glass-panel p-6 rounded-[2rem] border border-black/5 bg-primary/5 relative overflow-hidden group hover:bg-primary/10 transition-all cursor-default">
+            <div className="flex justify-between items-start mb-4">
+              <div className="h-8 w-8 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+                <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <span className="text-[8px] font-black bg-primary text-white px-2 py-1 rounded-full tracking-tighter">SOON</span>
+            </div>
+            <h3 className="text-[10px] font-black text-primary uppercase tracking-widest mb-2">Comm Matrix</h3>
+            <p className="text-[10px] leading-relaxed text-muted-foreground font-medium">
+              Orchestrate strategic mission briefings and AI-driven organizational communications through our upcoming nexus.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="p-6 mt-auto border-t border-black/5">
