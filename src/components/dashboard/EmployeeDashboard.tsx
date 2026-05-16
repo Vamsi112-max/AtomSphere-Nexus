@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 
 export function EmployeeDashboard() {
   const { user } = useAuth();
-  const firstName = user?.displayName?.split(" ")[0] || "User";
+  const fullName = user?.user_metadata?.name || user?.email?.split("@")[0] || "Operative";
+  const firstName = fullName.split(" ")[0];
 
   return (
     <div className="space-y-8">
@@ -17,7 +18,7 @@ export function EmployeeDashboard() {
       >
         <div>
           <h2 className="text-3xl font-black text-primary flex items-center gap-3">
-            Welcome back, {user?.displayName || "Node"} 👋
+            Welcome back, {firstName} 👋
           </h2>
           <p className="text-muted-foreground mt-1 font-medium italic">Here's what's happening with your goals today.</p>
         </div>
