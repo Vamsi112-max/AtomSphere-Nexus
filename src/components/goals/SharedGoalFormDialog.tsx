@@ -101,93 +101,93 @@ export function SharedGoalFormDialog({ isOpen, onClose, goalToEdit, onSuccess }:
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-[500px] glass-panel border-white/10">
+      <DialogContent className="sm:max-w-[500px] glass-panel border-black/5 p-10">
         <DialogHeader>
-          <DialogTitle>{goalToEdit ? "Edit Shared Goal" : "Create Shared Goal"}</DialogTitle>
+          <DialogTitle className="text-3xl font-black text-primary uppercase tracking-widest">{goalToEdit ? "Sync Blueprint" : "Deploy Strategy"}</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 py-4">
           <div className="space-y-2">
             <Input
-              placeholder="Goal Title"
-              className="bg-black/20 border-white/10 font-medium"
+              placeholder="Strategic Objective Title"
+              className="bg-black/5 border-black/5 text-lg font-black text-primary placeholder:text-muted-foreground/30 rounded-xl h-12"
               {...form.register("title")}
             />
             {form.formState.errors.title && (
-              <p className="text-xs text-destructive">{form.formState.errors.title.message}</p>
+              <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.title.message)}</p>
             )}
           </div>
 
           <div className="space-y-2">
             <Textarea
-              placeholder="Detailed Description"
-              className="bg-black/20 border-white/10 resize-none h-20"
+              placeholder="Provide a detailed strategic roadmap for this initiative..."
+              className="rounded-[2rem] bg-black/5 border-black/5 min-h-[100px] px-6 py-4 focus:bg-white transition-all text-primary font-bold placeholder:text-muted-foreground/30"
               {...form.register("description")}
             />
             {form.formState.errors.description && (
-              <p className="text-xs text-destructive">{form.formState.errors.description.message}</p>
+              <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.description.message)}</p>
             )}
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-xs text-muted-foreground uppercase font-semibold">UoM</label>
+              <label className="ml-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Unit (UoM)</label>
               <Input
                 placeholder="%, $m, count"
-                className="bg-black/20 border-white/10"
+                className="pill-input"
                 {...form.register("uom")}
               />
               {form.formState.errors.uom && (
-                <p className="text-xs text-destructive">{form.formState.errors.uom.message}</p>
+                <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.uom.message)}</p>
               )}
             </div>
             <div className="space-y-2">
-              <label className="text-xs text-muted-foreground uppercase font-semibold">Target</label>
+              <label className="ml-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Target</label>
               <Input
                 type="number"
                 step="any"
                 placeholder="0"
-                className="bg-black/20 border-white/10"
+                className="pill-input"
                 {...form.register("targetValue")}
               />
               {form.formState.errors.targetValue && (
-                <p className="text-xs text-destructive">{form.formState.errors.targetValue.message}</p>
+                <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.targetValue.message)}</p>
               )}
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-xs text-muted-foreground uppercase font-semibold">Thrust Area</label>
+              <label className="ml-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Thrust Area</label>
               <Input
                 placeholder="e.g. Revenue"
-                className="bg-black/20 border-white/10"
+                className="pill-input"
                 {...form.register("thrustArea")}
               />
               {form.formState.errors.thrustArea && (
-                <p className="text-xs text-destructive">{form.formState.errors.thrustArea.message}</p>
+                <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.thrustArea.message)}</p>
               )}
             </div>
             <div className="space-y-2">
-              <label className="text-xs text-muted-foreground uppercase font-semibold">Department</label>
+              <label className="ml-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Target Department</label>
               <Input
                 placeholder="e.g. Engineering"
-                className="bg-black/20 border-white/10"
+                className="pill-input"
                 {...form.register("department")}
               />
               {form.formState.errors.department && (
-                <p className="text-xs text-destructive">{form.formState.errors.department.message}</p>
+                <p className="ml-4 text-[10px] font-black text-destructive uppercase tracking-widest">{String(form.formState.errors.department.message)}</p>
               )}
             </div>
           </div>
 
-          <DialogFooter className="pt-4">
-            <Button type="button" variant="ghost" onClick={onClose} disabled={isLoading}>
+          <DialogFooter className="pt-8">
+            <Button type="button" variant="ghost" onClick={onClose} disabled={isLoading} className="rounded-full">
               Cancel
             </Button>
-            <Button type="submit" disabled={isLoading}>
+            <Button type="submit" disabled={isLoading} className="pill-button px-8">
               {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {goalToEdit ? "Save Changes" : "Push to Department"}
+              {goalToEdit ? "Sync Logic" : "Deploy Initiative"}
             </Button>
           </DialogFooter>
         </form>
