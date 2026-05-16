@@ -1,7 +1,7 @@
 import * as z from "zod";
 
 export const checkInSchema = z.object({
-  actualValue: z.number({ coerce: true }).min(0, "Actual value must be a positive number."),
+  actualValue: z.coerce.number().min(0, "Actual value must be a positive number."),
   status: z.enum(["Not Started", "On Track", "Completed"], {
     required_error: "Please select a status.",
   }),
