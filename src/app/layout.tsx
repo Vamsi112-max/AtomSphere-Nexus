@@ -15,12 +15,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   title: "AtomQuest | Strategic Performance Nexus",
   description: "Next-generation strategic execution suite. Synchronize goals, orchestrate real-time collaboration, and visualize organizational velocity with AI-driven analytics.",
   keywords: ["Strategic Execution", "Performance Management", "KPI Tracking", "Real-time Collaboration", "AI Analytics"],
   authors: [{ name: "AtomQuest Team" }],
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0",
   openGraph: {
     title: "AtomQuest",
     description: "Strategic Performance Nexus",
