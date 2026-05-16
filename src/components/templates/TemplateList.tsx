@@ -151,12 +151,12 @@ export function TemplateList() {
           />
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger render={
+          <DialogTrigger asChild>
             <Button className="pill-button h-12">
               <Plus className="h-4 w-4 mr-2" />
               New Template
             </Button>
-          } />
+          </DialogTrigger>
           <DialogContent className="glass-panel border-white/80 max-w-lg p-10">
             <DialogHeader>
               <DialogTitle className="text-3xl font-black text-primary uppercase tracking-widest">Create Template</DialogTitle>
@@ -239,10 +239,10 @@ export function TemplateList() {
                     <FileText className="h-6 w-6 text-primary group-hover:text-white" />
                   </div>
                   <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-10 w-10 p-0 rounded-full hover:bg-black/5">
-                        <MoreHorizontal className="h-5 w-5" />
-                      </Button>
+                    <DropdownMenuTrigger>
+                      <div className="h-10 w-10 flex items-center justify-center rounded-full hover:bg-black/5 cursor-pointer transition-all">
+                        <MoreHorizontal className="h-5 w-5 text-primary" />
+                      </div>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="glass-panel border-white/80 p-2 min-w-[160px]">
                       <DropdownMenuItem onClick={() => handleDelete(template.id)} className="text-destructive rounded-xl p-3 focus:bg-red-50">
