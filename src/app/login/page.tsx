@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { supabase } from "@/lib/supabase";
+import { supabase, isPlaceholderConfig } from "@/lib/supabase";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -62,6 +62,25 @@ export default function LoginPage() {
         className="w-full max-w-xl glass-panel p-12 md:p-16 flex flex-col items-center text-center shadow-[0_50px_100px_rgba(0,0,0,0.05)]"
       >
         <h1 className="text-4xl font-black text-primary uppercase tracking-[0.3em] mb-12">Login</h1>
+
+        {isPlaceholderConfig && (
+          <div className="mb-8 w-full p-6 bg-red-500/10 border border-red-500/20 text-red-700 dark:text-red-400 rounded-3xl text-xs text-left leading-relaxed">
+            <p className="font-black mb-1 flex items-center gap-2 uppercase tracking-wider text-red-800 dark:text-red-300">
+              <span>⚠️</span> Environment Config Missing
+            </p>
+            <p className="opacity-90 font-medium">
+              The application is using placeholder fallback Supabase credentials. Login and data fetching will fail.
+            </p>
+            <p className="mt-3 font-black uppercase tracking-widest text-[10px] text-red-800 dark:text-red-300">
+              Required Actions:
+            </p>
+            <ul className="list-disc list-inside mt-1 space-y-1 opacity-90 font-bold">
+              <li>Add <code className="bg-red-500/20 px-1 py-0.5 rounded font-mono">NEXT_PUBLIC_SUPABASE_URL</code> to Vercel Env Vars</li>
+              <li>Add <code className="bg-red-500/20 px-1 py-0.5 rounded font-mono">NEXT_PUBLIC_SUPABASE_ANON_KEY</code> to Vercel Env Vars</li>
+              <li>Trigger a clean Redeploy in Vercel to compile with these keys</li>
+            </ul>
+          </div>
+        )}
         
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-8">
           <div className="space-y-6 text-left">
