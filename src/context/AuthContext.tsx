@@ -31,12 +31,33 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const fetchSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (session?.user) {
-        setUser(session.user);
-        await fetchRole(session.user);
-      } else {
+      // Priority 0: Client-side dummy session
+      if (typeof window !== 'undefined') {
+        const dummyUserStr = localStorage.getItem('dummy_user');
+        if (dummyUserStr) {
+          try {
+            const dummyUser = JSON.parse(dummyUserStr);
+            setUser(dummyUser);
+            setRole(dummyUser.user_metadata.role);
+            setLoading(false);
+            return;
+          } catch (e) {
+            // fallback
+          }
+        }
+      }
+
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (session?.user) {
+          setUser(session.user);
+          await fetchRole(session.user);
+        } else {
+          setUser(null);
+          setRole(null);
+        }
+      } catch (err) {
         setUser(null);
         setRole(null);
       }
@@ -47,6 +68,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        // If dummy user is present, ignore Supabase session changes
+        if (typeof window !== 'undefined' && localStorage.getItem('dummy_user')) {
+          return;
+        }
+
         if (session?.user) {
           setUser(session.user);
           await fetchRole(session.user);
@@ -104,9 +130,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const logout = async () => {
     try {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('dummy_user');
+      }
       await supabase.auth.signOut();
+      setUser(null);
+      setRole(null);
       router.push("/login");
     } catch (error) {
+      setUser(null);
+      setRole(null);
+      router.push("/login");
     }
   };
 

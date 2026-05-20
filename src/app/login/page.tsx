@@ -37,15 +37,38 @@ export default function LoginPage() {
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     setIsLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      let dummyRole = "employee";
+      let dummyName = "Mission Specialist";
+      let dummyId = "5a8afc6f-f2de-4f81-8976-bb553360421a"; // Seeded employee UUID
+      
+      const emailLower = values.email.toLowerCase();
+      if (emailLower.includes("admin")) {
+        dummyRole = "admin";
+        dummyName = "System Admin";
+        dummyId = "642b4c8b-4d0d-4089-8647-d48c51adb346"; // Seeded admin UUID
+      } else if (emailLower.includes("manager")) {
+        dummyRole = "manager";
+        dummyName = "Tactical Manager";
+        dummyId = "475b4ce0-6266-4830-871f-60e2f8f8b49f"; // Seeded manager UUID
+      }
+
+      const dummyUser = {
+        id: dummyId,
         email: values.email,
-        password: values.password,
-      });
-      if (error) throw error;
-      toast.success("Successfully logged in!");
-      router.push("/dashboard");
+        user_metadata: {
+          name: dummyName,
+          role: dummyRole
+        }
+      };
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem("dummy_user", JSON.stringify(dummyUser));
+      }
+
+      toast.success(`Successfully logged in as ${dummyName}!`);
+      window.location.href = "/dashboard";
     } catch (error: any) {
-      toast.error(error.message || "Invalid credentials");
+      toast.error("Failed to log in.");
     } finally {
       setIsLoading(false);
     }
